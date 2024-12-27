@@ -1,5 +1,21 @@
 // file parts/misc.scad
 
+module spaxq4(a=10, h=10) {
+    aa=a/2;
+    translate([+aa,+aa,h/2]) cylinder(d=1.8, h=h, center=true, $fn=50); // cyz
+    translate([-aa,+aa,h/2]) cylinder(d=1.8, h=h, center=true, $fn=50); // cyz
+    translate([+aa,-aa,h/2]) cylinder(d=1.8, h=h, center=true, $fn=50); // cyz
+    translate([-aa,-aa,h/2]) cylinder(d=1.8, h=h, center=true, $fn=50); // cyz
+}
+
+module spaxq4s(a=10, h=0) {
+    aa=a/2;
+    translate([+aa,+aa,h-5.5]) cut_spax2_deep();
+    translate([-aa,+aa,h-5.5]) cut_spax2_deep();
+    translate([+aa,-aa,h-5.5]) cut_spax2_deep();
+    translate([-aa,-aa,h-5.5]) cut_spax2_deep();
+}
+
 module anno(lx, ly, txt) {
     LT(lx,ly,0) translate([0,0,0]) linear_extrude(2) text(txt, size=12);
 }
