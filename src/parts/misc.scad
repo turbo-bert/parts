@@ -1,5 +1,21 @@
 // file parts/misc.scad
 
+module koppl(l=27, d=7.5) {
+    d2=d*3/2;
+    h=3;
+
+    difference() {
+        union() {
+            translate([0,0,h/2]) sportplatz(l=l+d+d, d=d2, h=h);
+        }
+        translate([+l/2,0,0]) cylinder(d=d, h=100, center=true, $fn=50);
+        translate([-l/2,0,0]) cylinder(d=d, h=100, center=true, $fn=50);
+        LT(-1,0.1,0) translate([0,0,h-0.5]) linear_extrude(10) text(str("d=",d), size=4);
+        LT(-1.3,-0.5,0) translate([0,0,h-0.5]) linear_extrude(10) text(str("l=", l, " h=", h), size=4);
+    }
+
+}
+
 module spaxq4(a=10, h=10) {
     aa=a/2;
     translate([+aa,+aa,h/2]) cylinder(d=1.8, h=h, center=true, $fn=50); // cyz
