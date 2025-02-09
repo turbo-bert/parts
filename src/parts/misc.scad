@@ -1,5 +1,18 @@
 // file parts/misc.scad
 
+module standing_triangle_beheaded(h=50, l=20, w=3, headoff=0, sideoff=0) {
+    difference(){
+    union() {
+    translate([-l/2,0,0]) rampX(h,l/2,w);
+    translate([+l/2,0,0]) ZL()ZL()rampX(h,l/2,w);
+    }
+    translate([0,0,h/2+h-headoff]) cube([h,h,h], center=true);
+    translate([+h/2+l/2-sideoff,0,h/2-0.01]) cube([h,h,h], center=true);
+    translate([-h/2-l/2+sideoff,0,h/2-0.01]) cube([h,h,h], center=true);
+    }
+    
+}
+
 module koppl(l=27, d=7.5) {
     d2=d*3/2;
     h=3;
