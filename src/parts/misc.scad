@@ -1,5 +1,18 @@
 // file parts/misc.scad
 
+module keg90() {
+    d=14.6;
+    union() {
+
+        intersection() {
+
+    XL() XL() translate([0,0,0]) cylinder(d1=20, d2=0, h=10, center=true, $fn=150); // cyz
+    translate([0,0,0]) cylinder(d=d, h=50, center=true, $fn=250); // cyz;
+}
+    translate([0,0,10+5]) cylinder(d=d, h=20, center=true, $fn=250); // cyz;
+}
+}
+
 module standing_triangle_beheaded(h=50, l=20, w=3, headoff=0, sideoff=0) {
     difference(){
     union() {
@@ -360,6 +373,9 @@ translate([-d,0,-h]) cube([2*d,2*d,h*3], center=false);
 
 module elf_vert_bore() {
     LT(0.5,0.5,0.8) translate([0,0,0]) cylinder(d=1.9, h=10, center=true, $fn=50); // cyz
+}
+module elf_vert_bore0(h=15) {
+    LT(0.5,0.5,0) translate([0,0,0]) cylinder(d=1.9, h=h, center=true, $fn=50); // cyz
 }
 
 module elf_vert_bore_grid(w=10,d=10,h=0) {
