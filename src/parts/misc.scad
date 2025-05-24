@@ -1,5 +1,37 @@
 // file parts/misc.scad
 
+module distwasher(d2=11, d1=4.5, h=1.5) {
+    difference(){
+        union() {
+            translate([0,0,0]) cylinder(d=d2, h=h, center=true, $fn=50); // cyz
+        }
+        translate([0,0,0]) cylinder(d=d1, h=h*2, center=true, $fn=50); // cyz
+    }
+}
+
+module pilgri(d, h, x, y) {
+    LT(-(x-1)/2, -(y-1)/2) union() {
+        for (X=[0:x-1]) {
+            for (Y=[0:y-1]) {
+                LT(X,Y) translate([0,0,h/2]) cylinder(d=d, h=h, center=true, $fn=100); // cyz
+
+            }
+        }
+    }
+
+}
+
+
+// turbo gear fit
+module tgfit(t=15, m=1.5, h=5, d=4, l=100, lrot=0) {
+    XL() union() {
+        rotate([0,0,lrot]) gear(m=m, t=t, h=h);
+        translate([0,0,0]) cylinder(d=d, h=l, center=true, $fn=50); // cyz
+    }
+}
+
+
+
 module keg90() {
     d=14.6;
     union() {
@@ -473,12 +505,12 @@ module nupsi_m3() {
     }
 
 
-    module nema17_quad(h=10) {
+    module nema17_quad(h=10, d=3.5) {
         translate([0,0,h/2]) rotate([0,0,0]) union() {
-            translate([+31/2,+31/2,0]) cylinder(d=3.5, center=true, h=h, $fn=20);
-            translate([-31/2,+31/2,0]) cylinder(d=3.5, center=true, h=h, $fn=20);
-            translate([+31/2,-31/2,0]) cylinder(d=3.5, center=true, h=h, $fn=20);
-            translate([-31/2,-31/2,0]) cylinder(d=3.5, center=true, h=h, $fn=20);
+            translate([+31/2,+31/2,0]) cylinder(d=d, center=true, h=h, $fn=20);
+            translate([-31/2,+31/2,0]) cylinder(d=d, center=true, h=h, $fn=20);
+            translate([+31/2,-31/2,0]) cylinder(d=d, center=true, h=h, $fn=20);
+            translate([-31/2,-31/2,0]) cylinder(d=d, center=true, h=h, $fn=20);
             //translate([0,0,0]) cylinder(d=28, center=true, h=100, $fn=200); // bohrung rund motor 28mm
         }
 
