@@ -1,5 +1,31 @@
 // file parts/misc.scad
 
+
+module flanschi(t=20, d=5.4, h=12,L="", R="") {
+difference(){
+union() {
+    gear(m=1.5,t=t,h=h);
+}
+
+    translate([0,0,0]) cylinder(d=d, h=100, center=true, $fn=50); // cyz
+
+    translate([+16/2,0,0]) cylinder(d=3.3, h=50, center=true, $fn=50); // cyz
+    translate([-16/2,0,0]) cylinder(d=3.3, h=50, center=true, $fn=50); // cyz
+    translate([0,+16/2,0]) cylinder(d=3.3, h=50, center=true, $fn=50); // cyz
+    translate([0,-16/2,0]) cylinder(d=3.3, h=50, center=true, $fn=50); // cyz
+
+    translate([+16/2,0,h-2.49]) cylinder(d=8, h=5, center=true, $fn=50); // cyz
+    translate([-16/2,0,h-2.49]) cylinder(d=8, h=5, center=true, $fn=50); // cyz
+    translate([0,+16/2,h-2.49]) cylinder(d=8, h=5, center=true, $fn=50); // cyz
+    translate([0,-16/2,h-2.49]) cylinder(d=8, h=5, center=true, $fn=50); // cyz
+
+LT(0,0,0) translate([-11,6,h-2]) linear_extrude(10) text(L, size=5);
+LT(0,0,0) translate([6,6,h-2]) linear_extrude(10) text(R, size=5);
+}
+
+}
+
+
 module distwasher(d2=11, d1=4.5, h=1.5) {
     difference(){
         union() {

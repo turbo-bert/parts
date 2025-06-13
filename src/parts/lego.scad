@@ -1,6 +1,30 @@
 c_lego_1he = 9.6;
 //c_lego_1he = 11.3;
 
+module naked_brick(x=1,y=1,z=1,do78=1) {
+    X=x*8;
+    Y=y*8;
+    Z=z*c_lego_1he;
+
+    if (do78 == 1) {
+        translate([X/2,Y/2,Z/2]) intersection () {
+            cube([X,Y,Z], center=true);
+            cube([X-0.2,Y-0.2,Z], center=true);
+        }
+    }
+    else {
+        if (do78 == 2) {
+
+        translate([X/2,Y/2,Z/2]) cube([X+0.2,Y+0.2,Z+0.2], center=true);
+        }
+        else {
+
+        translate([X/2,Y/2,Z/2]) cube([X,Y,Z], center=true);
+        }
+    }
+
+}
+
 module thread_box_brick(text="") {
     w=14;
     d=2;
