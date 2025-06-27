@@ -1,6 +1,40 @@
 c_lego_1he = 9.6;
 //c_lego_1he = 11.3;
 
+module gexy13(X=4, Y=2, inner=1) {
+    difference() {
+
+        elf13_brick(X,Y,1,do78=1);
+        LT(X/2,Y/2,0) elf_vert_bore_grid(X,Y,0);
+        raster_nx=X+1; raster_ny=Y+1; raster_dx=8; raster_dy=8; for (raster_x=[0:raster_nx-1]) for (raster_y=[0:raster_ny-1]) translate([raster_dx*raster_x, raster_dy*raster_y, 0])
+        if (inner == 1) {
+            LT(0,0,-0.3339/2) cut_spax2_deep();
+        }
+        else {
+            if (!(raster_x > 0 && raster_x <raster_nx-1 && raster_y > 0 && raster_y <raster_ny-1)) {
+                LT(0,0,-0.3339/2) cut_spax2_deep();
+            }
+        }
+    }
+}
+
+module schraulei(n=4, h=1) {
+
+    union() {
+
+    for (i=[0:n-1]) {
+        if (i<n-1) {
+            translate([i*8+4,0,0]) translate([0,0,0]) cube([5,5,h*c_lego_1he], center=true);
+        }
+        difference() {
+        translate([i*8,0,0]) cylinder(d=7.8, h=h*c_lego_1he, center=true, $fn=100); // cyz
+        translate([i*8,0,0]) cylinder(d=1.8, h=h*c_lego_1he+1, center=true, $fn=100); // cyz
+        }
+    }
+    
+    }
+}
+
 module naked_brick(x=1,y=1,z=1,do78=1) {
     X=x*8;
     Y=y*8;
